@@ -1,5 +1,7 @@
 # BOSH Release for tree
 
+This BOSH release includes a package for the `tree` executable; and a job that does nothing except install the tree package.
+
 ## Usage
 
 To use this bosh release, first upload it to your bosh:
@@ -18,4 +20,13 @@ cp examples/bosh-lite.yml local.yml
 sed -i '' -e "s/DIRECTOR_UUID/$(bosh status | grep UUID | awk '{print $2}')/" local.yml
 bosh deployment local.yml
 bosh -n deploy
+```
+
+To see the tree command in action:
+
+```
+bosh ssh
+
+# inside the VM:
+/var/vcap/packages/tree/bin/tree /var/vcap/bosh
 ```
