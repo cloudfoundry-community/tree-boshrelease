@@ -1,6 +1,6 @@
 ---
-name: tree-solo
-director_uuid: DIRECTOR_UUID
+name: tree-demo
+director_uuid: 53e56169-85eb-428f-b2ef-04caf08525bb
 releases:
 - name: tree
   version: latest
@@ -59,7 +59,5 @@ jobs:
   resource_pool: common
   networks:
   - name: tree-network
-    static_ips:
-    - 10.244.0.6
 properties:
   tree: {}

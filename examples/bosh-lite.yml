@@ -1,5 +1,5 @@
 ---
-name: tree-cluster
+name: tree-demo
 director_uuid: DIRECTOR_UUID
 releases:
 - name: tree
@@ -18,7 +18,7 @@ update:
 resource_pools:
 - name: common
   network: tree-network
-  size: 3
+  size: 1
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -55,13 +55,9 @@ networks:
 jobs:
 - name: tree
   template: tree
-  instances: 3
+  instances: 1
   resource_pool: common
   networks:
   - name: tree-network
-    static_ips:
-    - 10.244.0.6
-    - 10.244.0.10
-    - 10.244.0.14
 properties:
   tree: {}

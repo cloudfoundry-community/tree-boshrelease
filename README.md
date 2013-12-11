@@ -14,8 +14,8 @@ bosh upload release releases/tree-1.yml
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest:
 
 ```
-cp examples/bosh-lite-cluster.yml local-cluster.yml
-sed -i '' -e "s/DIRECTOR_UUID/$(bosh status | grep UUID | awk '{print $2}')/" local-cluster.yml
-bosh deployment local-cluster.yml
+cp examples/bosh-lite.yml local.yml
+sed -i '' -e "s/DIRECTOR_UUID/$(bosh status | grep UUID | awk '{print $2}')/" local.yml
+bosh deployment local.yml
 bosh -n deploy
 ```
