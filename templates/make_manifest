@@ -10,10 +10,28 @@ if [ "$infrastructure" != "openstack-nova" ] && \
   exit 1
 fi
 
+BOSH_STATUS=$(bosh status)
+DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
+DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
+NAME=tree-$infrastructure
+
 if [[ $infrastructure = "warden" ]]; then
-  EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
-  if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
-    echo "Can only target $EXPECTED_DIRECTOR_NAME. Please use 'bosh target' before running this script."
+  if [[ $DIRECTOR_CPI != "warden" ]]; then
+    echo "Not targeting bosh-lite with warden CPI. Please use 'bosh target' before running this script."
+    exit 1
+  fi
+fi
+
+if [[ $infrastructure = "aws-ec2" ]]; then
+  if [[ $DIRECTOR_CPI != "aws" ]]; then
+    echo "Not targeting an AWS BOSH. Please use 'bosh target' before running this script."
+    exit 1
+  fi
+fi
+
+if [[ $infrastructure = "openstack-nova" ]]; then
+  if [[ $DIRECTOR_CPI != "openstack" ]]; then
+    echo "Not targeting an OpenStack BOSH. Please use 'bosh target' before running this script."
     exit 1
   fi
 fi
@@ -21,10 +39,6 @@ fi
 templates=$(dirname $0)
 release=$templates/..
 tmpdir=$release/tmp
-
-BOSH_STATUS=$(bosh status)
-DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-NAME=tree-$infrastructure
 
 mkdir -p $tmpdir
 cp $templates/tree-stub-spiff.yml $tmpdir/stub-with-uuid.yml
