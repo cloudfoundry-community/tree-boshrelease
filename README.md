@@ -2,6 +2,10 @@
 
 This BOSH release includes a package for the `tree` executable; and a job that does nothing except install the tree package.
 
+## Requirements
+
+* A BOSH configured for AWS EC2 or OpenStack (Nova Networks), or bosh-lite.
+
 ## Usage
 
 To use this bosh release, first upload it to your bosh:
@@ -24,6 +28,13 @@ For Openstack (Nova Networks):
 
 ```
 templates/make_manifest openstack-nova
+bosh -n deploy
+```
+
+For AWS EC2:
+
+```
+templates/make_manifest aws-ec2
 bosh -n deploy
 ```
 
