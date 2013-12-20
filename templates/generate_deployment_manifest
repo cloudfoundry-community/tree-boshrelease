@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+templates=$(dirname $0)
+
+release_name="tree"
+infrastructure=$1
+
+shift
+
+if [ "$infrastructure" != "aws" ] && \
+    [ "$infrastructure" != "warden" ] && \
+    [ "$infrastructure" != "vsphere" ] ; then
+  echo "usage: ./generate_deployment_manifest <aws|warden|vsphere> [stubs...]"
+  exit 1
+fi
+
+spiff merge \
+  $templates/$release_name-deployment.yml \
+  $templates/$release_name-jobs.yml \
+  $templates/$release_name-properties.yml \
+  $templates/$release_name-infrastructure-${infrastructure}.yml \
+  $*
