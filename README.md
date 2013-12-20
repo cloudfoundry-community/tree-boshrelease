@@ -17,7 +17,7 @@ cd tree-boshrelease
 bosh upload release releases/tree-1.yml
 ```
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest:
+For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a single VM with tree installed as a BOSH package:
 
 ```
 templates/make_manifest warden
