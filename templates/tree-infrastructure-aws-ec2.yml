@@ -1,8 +1,8 @@
 meta:
-  environment: tree-openstack
+  environment: tree-aws
 
   stemcell:
-    name: bosh-openstack-kvm-ubuntu
+    name: bosh-aws-xen-ubuntu
     version: latest
 
 update:

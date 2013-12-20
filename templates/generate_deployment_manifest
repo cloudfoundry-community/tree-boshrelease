@@ -10,6 +10,7 @@ infrastructure=$1
 shift
 
 if [ "$infrastructure" != "openstack-nova" ] && \
+    [ "$infrastructure" != "aws-ec2" ] && \
     [ "$infrastructure" != "warden" ] ; then
   echo "usage: ./generate_deployment_manifest <openstack-nova|warden> [stubs...]"
   exit 1
