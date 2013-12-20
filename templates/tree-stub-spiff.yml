@@ -1,0 +1,6 @@
+---
+name: tree-warden
+director_uuid: PLACEHOLDER-DIRECTOR-UUID
+releases:
+  - name: tree
+    version: latest
