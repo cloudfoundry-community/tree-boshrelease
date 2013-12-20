@@ -16,7 +16,14 @@ bosh upload release releases/tree-1.yml
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest:
 
 ```
-templates/make_manifest_warden
+templates/make_manifest warden
+bosh -n deploy
+```
+
+For Openstack (Nova Networks):
+
+```
+templates/make_manifest openstack-nova
 bosh -n deploy
 ```
 

@@ -1,5 +1,5 @@
 ---
-name: tree-warden
+name: NAME
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 releases:
   - name: tree

@@ -1,27 +1,32 @@
 #!/bin/bash
 
+infrastructure=$1
+shift
+
+if [ "$infrastructure" != "openstack-nova" ] && \
+    [ "$infrastructure" != "warden" ] ; then
+  echo "usage: ./make_manifest <openstack-nova|warden>"
+  exit 1
+fi
+
 templates=$(dirname $0)
 release=$templates/..
 tmpdir=$release/tmp
 
 BOSH_STATUS=$(bosh status)
-EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-
-if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
-  echo "Can only target $EXPECTED_DIRECTOR_NAME. Please use 'bosh target' before running this script."
-  exit 1
-fi
+NAME=tree-$infrastructure
 
 mkdir -p $tmpdir
 cp $templates/tree-stub-spiff.yml $tmpdir/stub-with-uuid.yml
 echo $DIRECTOR_UUID
 perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/stub-with-uuid.yml
+perl -pi -e "s/NAME/$NAME/g" $tmpdir/stub-with-uuid.yml
 
 $templates/generate_deployment_manifest \
-                        warden \
+                        $infrastructure \
                         $tmpdir/stub-with-uuid.yml \
-                        $* > $tmpdir/tree-manifest-warden.yml
+                        $* > $tmpdir/tree-manifest-$infrastructure.yml
 
-bosh deployment $tmpdir/tree-manifest-warden.yml
+bosh deployment $tmpdir/tree-manifest-$infrastructure.yml
 bosh status
