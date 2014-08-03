@@ -25,8 +25,8 @@ DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
 DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
 NAME=${NAME:-$template_prefix-$infrastructure}
 
-if [[ $DIRECTOR_NAME = "warden" ]]; then
-  if [[ $infrastructure != "warden" ]]; then
+if [[ $infrastructure = "warden" ]]; then
+  if [[ $DIRECTOR_CPI != "warden" ]]; then
     echo "Not targeting bosh-lite with warden CPI. Please use 'bosh target' before running this script."
     exit 1
   fi
