@@ -1,4 +1,6 @@
 ---
 builds:
-  !binary "YzE3MGM0ZmRkNGJiMzA0NzgzZGJiZGFjNWJhYTVhODA0ZTI2NDczNQ==":
+  c170c4fdd4bb304783dbbdac5baa5a804e264735:
     version: 1
+  fa4444f0-8bf1-438e-8306-da5b5a2185a3:
+    version: '2'
