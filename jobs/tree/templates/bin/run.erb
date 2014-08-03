@@ -1,0 +1,5 @@
+#!/bin/bash -l
+
+set -e -x
+
+/var/vcap/packages/tree/bin/tree <%= p("tree.arguments") %> <%= p("tree.path") %>

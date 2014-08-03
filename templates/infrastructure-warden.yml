@@ -11,14 +11,6 @@ update:
   canary_watch_time: 1000-30000
   update_watch_time: 1000-30000
 
-jobs:
-  # specify tree static IP
-  - name: tree_z1
-    instances: 1
-    networks:
-      - name: tree1
-        static_ips: (( static_ips(1) ))
-
 compilation:
   cloud_properties:
     name: random

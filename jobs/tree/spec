@@ -2,4 +2,12 @@
 name: tree
 packages:
 - tree
-templates: {}
+templates:
+  bin/run.erb: bin/run
+properties:
+  tree.path:
+    description: Path to show tree view
+    default: /var/vcap/jobs/tree
+  tree.arguments:
+    description: Arguments to pass to tree command (see "man tree")
+    default: -L 3

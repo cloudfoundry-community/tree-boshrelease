@@ -1,4 +1,8 @@
 ---
+meta:
+  stemcell:
+    name: STEMCELL
+
 name: NAME
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 releases:

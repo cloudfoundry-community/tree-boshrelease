@@ -11,12 +11,6 @@ update:
   canary_watch_time: 1000-30000
   update_watch_time: 1000-30000
 
-jobs:
-  - name: tree_z1
-    instances: 1
-    networks:
-      - name: default
-
 compilation:
   cloud_properties:
     instance_type: m1.small
@@ -27,9 +21,6 @@ resource_pools:
       instance_type: m1.small
 
 networks:
-  - name: floating
-    type: vip
-    cloud_properties: {}
   - name: tree1
     type: dynamic
     cloud_properties:

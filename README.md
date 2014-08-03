@@ -1,20 +1,56 @@
 BOSH Release for tree
 =====================
 
-This BOSH release includes a package for the `tree` executable; and a job that does nothing except install the tree package.
-
-Requirements
-------------
-
-- A BOSH configured for AWS EC2/VPC, OpenStack (Nova Networks), or bosh-lite.
+This BOSH release includes an errand for running the `tree` executable.
 
 Usage
 -----
 
+The `tree` errand is run:
+
+```
+$ bosh run errand tree
+[stdout]
+/var/vcap/jobs/tree
+|-- bin
+|   `-- run
+|-- monit
+`-- packages
+    `-- tree -> /var/vcap/data/packages/tree...
+```
+
+To configure the path & arguments used for the `tree` command, add the following to the deployment manifest:
+
+```yaml
+properties:
+  tree:
+    path: /var/vcap/
+    arguments: -L 4
+```
+
+Deploy the changes & run the errand:
+
+```
+$ bosh deploy
+$ bosh run errand tree
+[stdout]
+/var/vcap/
+|-- bosh
+|   |-- agent.cert
+|   |-- agent.json
+|   |-- agent.key
+|   |-- bin
+|   |   |-- agent_client
+|   |   |-- aws-rb
+...
+```
+
+Installation
+------------
+
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh target BOSH_HOST
 git clone https://github.com/cloudfoundry-community/tree-boshrelease.git
 cd tree-boshrelease
 bosh upload release releases/tree-1.yml
@@ -27,7 +63,7 @@ templates/make_manifest warden
 bosh -n deploy
 ```
 
-For Openstack (Nova Networks):
+For OpenStack (Nova Networks):
 
 ```
 templates/make_manifest openstack-nova
@@ -41,11 +77,27 @@ templates/make_manifest aws-ec2
 bosh -n deploy
 ```
 
-To see the tree command in action:
+For AWS VPC:
+
+First create a stub for the `tree1` network to be used:
+
+```yaml
+networks:
+  - name: tree1
+    type: manual
+    subnets:
+    - name: external
+      range: 10.10.0.64/27
+      gateway: 10.10.0.65
+      reserved:
+      - 10.10.0.66 - 10.10.0.83
+      cloud_properties:
+        subnet: subnet-123456
+        security_groups:
+        - vpc-123456
+```
 
 ```
-bosh ssh
-
-# inside the VM:
-/var/vcap/packages/tree/bin/tree /var/vcap/bosh
+templates/make_manifest aws my-network.yml
+bosh -n deploy
 ```
