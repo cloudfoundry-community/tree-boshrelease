@@ -1,12 +1,15 @@
-# BOSH Release for tree
+BOSH Release for tree
+=====================
 
 This BOSH release includes a package for the `tree` executable; and a job that does nothing except install the tree package.
 
-## Requirements
+Requirements
+------------
 
-* A BOSH configured for AWS EC2 or OpenStack (Nova Networks), or bosh-lite.
+- A BOSH configured for AWS EC2/VPC, OpenStack (Nova Networks), or bosh-lite.
 
-## Usage
+Usage
+-----
 
 To use this bosh release, first upload it to your bosh:
 
