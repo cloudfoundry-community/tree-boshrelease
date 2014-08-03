@@ -51,9 +51,14 @@ Installation
 To use this bosh release, first upload it to your bosh:
 
 ```
+bosh upload release https://tree-boshrelease.s3.amazonaws.com/boshrelease-tree-2.tgz
+```
+
+To generate manifests, first fetch this repo:
+
+```
 git clone https://github.com/cloudfoundry-community/tree-boshrelease.git
 cd tree-boshrelease
-bosh upload release releases/tree-1.yml
 ```
 
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a single VM with tree installed as a BOSH package:
