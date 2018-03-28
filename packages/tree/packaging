@@ -24,4 +24,4 @@ cp /etc/apt/trusted.gpg "$trustedKeys"
 set -x
 
 apt-get update ${options}
-apt-get install ${options} -y tree
+apt-get install ${options} -y -d tree

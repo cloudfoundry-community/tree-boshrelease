@@ -1,12 +1,8 @@
 #!/bin/bash
 
-cacheDir="/var/vcap/packages/tree/apt/cache"
-installDir="/var/vcap/packages/tree/apt/root"
+package=tree
 
-debfiles=$(ls $cacheDir/archives/*.deb)
+debfiles=$(ls /var/vcap/packages/${package}/apt/cache/archives/*.deb)
 for debfile in ${debfiles[@]}; do
-  dpkg -x $debfile $installDir
+  dpkg -x $debfile /
 done
-
-cp /var/vcap/jobs/tree/bin/runtime.env /etc/profile.d/01-tree.sh
-chmod 644 /etc/profile.d/01-tree.sh
