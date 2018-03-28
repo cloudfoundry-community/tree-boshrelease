@@ -19,7 +19,7 @@ meta:
     password: ((bosh-client-secret))
 
   aws:
-    bucket:      (( grab meta.pipeline ))
+    bucket:      demo-tree-boshrelease
     region_name: us-east-1
     access_key:  ((aws-access-key))
     secret_key:  ((aws-secret-key))
