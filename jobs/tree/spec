@@ -4,5 +4,6 @@ packages: [tree]
 
 templates:
   pre-start.sh: bin/pre-start
+  runtime.env: bin/runtime.env
 
 properties: {}
