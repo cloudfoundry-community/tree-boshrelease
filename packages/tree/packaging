@@ -1,18 +1,9 @@
-set -e # exit immediately if a simple command exits with a non-zero status
-set -u # report the usage of uninitialized variables
+set -eu
 
 # Available variables
 # $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
 
-
-
-tar xfvz tree/tree_1.6.0.orig.tar.gz
-cd tree-1.6.0
-
-# Makefile hardcodes prefix=/usr
-sed -i -e "s#prefix = /usr#prefix = ${BOSH_INSTALL_TARGET}#" Makefile
-
-make
-make install
+apt-get update
+apt-get install tree

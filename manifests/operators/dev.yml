@@ -1,0 +1,6 @@
+---
+- type: replace
+  path: /releases/name=tree
+  value:
+    name: tree
+    version: latest
