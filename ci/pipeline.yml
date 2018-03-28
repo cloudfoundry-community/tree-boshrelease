@@ -293,7 +293,7 @@ jobs:
         put: git
         params:
           rebase: true
-          repository: pushme/git
+          repository: pushme
       - name: tarball
         put: s3-tarball
         params:
