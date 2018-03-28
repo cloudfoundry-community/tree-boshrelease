@@ -29,6 +29,6 @@ update:
 
 releases:
 - name: tree
-  version: latest # TODO: update after first final release
-  # url:            TODO: update after first final release
-  # sha1:           TODO: update after first final release
+  version: 3.0.0
+  url: https://github.com/cloudfoundry-community/tree-boshrelease/releases/download/v3.0.0/tree-3.0.0.tgz
+  sha1: 50adc4898f2b34dd6980cbaeab382f88713f2418
