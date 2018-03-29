@@ -1,0 +1,15 @@
+- path: /releases/name=tree/url
+  type: replace
+  value: "https://s3.amazonaws.com/demo-tree-boshrelease/compiled-releases/tree-3.0.1-ubuntu-trusty-3541.10-20180329-033857-953866936-20180329033859.tgz"
+- path: /releases/name=tree/version
+  type: replace
+  value: "3.0.1"
+- path: /releases/name=tree/sha1
+  type: replace
+  value: "02cbecda3b51dfdacd49915e4375c78a45c7d6b8"
+
+- path: /releases/name=tree/stemcell?
+  type: replace
+  value:
+    os: "ubuntu-trusty"
+    version: "3541.10"
