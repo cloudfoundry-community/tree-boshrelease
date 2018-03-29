@@ -1,0 +1,1 @@
+CI pipeline produces a `manifests/operators/use-compiled-releases.yml` operator file.

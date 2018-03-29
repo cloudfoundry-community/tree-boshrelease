@@ -73,6 +73,7 @@ groups:
       - major
       - minor
       - compile-release-3541
+      - use-compiled-releases
 
 jobs:
   - name: testflight
@@ -209,6 +210,7 @@ jobs:
       - aggregate:
         - get: git
         - get: github
+          trigger: true
         - get: ubuntu-trusty-stemcell-3541
           params: {tarball: false}
       - task: export-release
@@ -237,6 +239,49 @@ jobs:
       - put: compiled-releases
         params:
           file: "compiled-release/compiled-releases/*.tgz"
+
+  - name: use-compiled-releases
+    plan:
+      - aggregate:
+        - get: git
+        - get: github
+          passed: [compile-release-3541]
+          trigger: true
+        - get: ubuntu-trusty-stemcell-3541
+          passed: [compile-release-3541]
+          params: {tarball: false}
+        - get: compiled-releases
+          passed: [compile-release-3541]
+      - task: use-compiled-releases
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: (( grab meta.image.name ))
+              tag:        (( grab meta.image.tag ))
+          inputs:
+            - name: git
+            - name: ubuntu-trusty-stemcell-3541
+              path: stemcell
+            - name: github
+              path: release
+            - name: compiled-releases
+          outputs:
+            - name: pushme
+          run:
+            path: git/ci/scripts/use-compiled-releases
+          params:
+            REPO_ROOT: git
+            REPO_OUT:  pushme
+            GIT_EMAIL: (( grab meta.git.email ))
+            GIT_NAME:  (( grab meta.git.name ))
+            BRANCH:    (( grab meta.github.branch ))
+      - name: upload-git
+        put: git
+        params:
+          rebase: true
+          repository: pushme
 
   - name: rc
     public: true
