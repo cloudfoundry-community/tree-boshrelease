@@ -29,6 +29,6 @@ update:
 
 releases:
 - name: tree
-  sha1: 89ce117258db3d197d199ee8988a6569c057507c
-  url: https://github.com/cloudfoundry-community/tree-boshrelease/releases/download/v3.0.2/tree-3.0.2.tgz
-  version: 3.0.2
+  sha1: cb02f6d09b98c208622415a510f4a0092ad1308c
+  url: https://github.com/cloudfoundry-community/tree-boshrelease/releases/download/v3.0.3/tree-3.0.3.tgz
+  version: 3.0.3
