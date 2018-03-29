@@ -1,12 +1,12 @@
 - path: /releases/name=tree/url
   type: replace
-  value: "https://s3.amazonaws.com/demo-tree-boshrelease/compiled-releases/tree-3.0.2-ubuntu-trusty-3541.10-20180329-042806-67789609-20180329042808.tgz"
+  value: "https://s3.amazonaws.com/demo-tree-boshrelease/compiled-releases/tree-3.0.3-ubuntu-trusty-3541.10-20180329-130116-049602057-20180329130117.tgz"
 - path: /releases/name=tree/version
   type: replace
-  value: "3.0.2"
+  value: "3.0.3"
 - path: /releases/name=tree/sha1
   type: replace
-  value: "39c1f36e5331d531a82705901233ae141d785440"
+  value: "1b4bf958a78d4d1f4193fceb5320c8484fa9738a"
 
 - path: /releases/name=tree/stemcell?
   type: replace
